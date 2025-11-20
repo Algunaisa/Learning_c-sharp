@@ -10,7 +10,8 @@
         "dependencies": {
           "CsvHelper": "33.1.0",
           "HtmlAgilityPack": "1.12.4",
-          "HtmlAgilityPack.CssSelectors": "1.0.2"
+          "HtmlAgilityPack.CssSelectors": "1.0.2",
+          "Selenium.WebDriver": "4.38.0"
         },
         "runtime": {
           "ConsoleApp1.dll": {}
@@ -42,6 +43,31 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Selenium.WebDriver/4.38.0": {
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux/native/selenium-manager": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/selenium-manager": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/selenium-manager.exe": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
       }
     }
   },
@@ -71,6 +97,13 @@
       "sha512": "sha512-bB4FeVvcNROENPWQfFSmPQ6q99jGk8ru5QoBB3qnEeaP451fjnqQ0uPuMgmWHAOZIXUAoOQozv/5fEEVSDyIzA==",
       "path": "htmlagilitypack.cssselectors/1.0.2",
       "hashPath": "htmlagilitypack.cssselectors.1.0.2.nupkg.sha512"
+    },
+    "Selenium.WebDriver/4.38.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3cYBndxLgPifEttQ1+k+KhKp2XBTdME3pUp4PC/eHb/hvHsefeT2WN2JJymzs+5mkqaXUp64FBnj2EG/Iyrh/A==",
+      "path": "selenium.webdriver/4.38.0",
+      "hashPath": "selenium.webdriver.4.38.0.nupkg.sha512"
     }
   }
 }

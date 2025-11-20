@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "28OYzR2Qm8o=",
+  "dgSpecHash": "3X9S8mYl45M=",
   "success": true,
   "projectFilePath": "C:\\Learning_c-sharp\\Web_Scraping\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xbflores\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512",
     "C:\\Users\\xbflores\\.nuget\\packages\\htmlagilitypack\\1.12.4\\htmlagilitypack.1.12.4.nupkg.sha512",
-    "C:\\Users\\xbflores\\.nuget\\packages\\htmlagilitypack.cssselectors\\1.0.2\\htmlagilitypack.cssselectors.1.0.2.nupkg.sha512"
+    "C:\\Users\\xbflores\\.nuget\\packages\\htmlagilitypack.cssselectors\\1.0.2\\htmlagilitypack.cssselectors.1.0.2.nupkg.sha512",
+    "C:\\Users\\xbflores\\.nuget\\packages\\selenium.webdriver\\4.38.0\\selenium.webdriver.4.38.0.nupkg.sha512"
   ],
   "logs": [
     {

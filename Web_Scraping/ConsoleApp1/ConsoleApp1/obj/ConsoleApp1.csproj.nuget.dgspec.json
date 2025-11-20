@@ -63,6 +63,10 @@
             "HtmlAgilityPack.CssSelectors": {
               "target": "Package",
               "version": "[1.0.2, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.38.0, )"
             }
           },
           "imports": [

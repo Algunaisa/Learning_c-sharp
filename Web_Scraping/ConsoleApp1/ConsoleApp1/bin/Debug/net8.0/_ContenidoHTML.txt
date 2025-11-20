@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bansí Intranet - Login</title>
+
+    <link href="/Content/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+<link href="/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="/Content/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        .bd-example-modal-lg .modal-dialog {
+            display: table;
+            position: relative;
+            margin: 0 auto;
+            top: calc(50% - 24px);
+        }
+
+            .bd-example-modal-lg .modal-dialog .modal-content {
+                background-color: transparent;
+                border: none;
+            }
+
+        div.dataTables_wrapper div.dataTables_filter {
+            text-align: left;
+        }
+
+        .expandSearch {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .expandSearch i {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 8px 4px 8px 8px;
+                color: #777;
+                cursor: pointer;
+                user-select: none;
+                transition: 0.24s;
+            }
+
+                .expandSearch i:hover {
+                    color: #0bf;
+                }
+
+            .expandSearch input {
+                border: none;
+                background: transparent;
+                font: 14px/1.4 sans-serif;
+                padding-left: 26px;
+                background: #fff;
+                /*      border: 2px solid #ddd;*/
+                border-radius: 4px;
+                transition: 0.24s;
+                width: 0px;
+                padding: 8px 0px 8px 34px;
+            }
+
+                .expandSearch input:focus {
+                    border-color: #aaa;
+                    outline: none;
+                    width: 200px;
+                    padding: 8px 12px 8px 34px;
+                    border-color: #0bf;
+                    border: 2px solid #ddd;
+                }
+
+                    .expandSearch input:focus + i {
+                        /*padding: 8px 4px 8px 8px ;*/
+                        color: #ddd;
+                        pointer-events: none;
+                    }
+
+        .dataTables_wrapper {
+            width: 100%;
+        }
+
+        .notification {
+            position: fixed;
+            z-index: 1000;
+            right: 0;
+            top: 1%;
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+</head>
+<body id="page-top">
+    <div class="alert alert-danger alert-dismissible notification" style="display:none" role="alert" id="ModalErrorLayoutAccess">
+        <a href="#" class="close" aria-label="Close" onclick="closeAlertMessage()">
+            <span aria-hidden="true">&times;</span>
+        </a>
+        <strong id="textModalErrorLayoutAccess" name="textModalErrorLayoutAccess"></strong>
+    </div>
+    <div id="wrapper">
+        <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="width: 48px; color:cornflowerblue;">
+                    <span class="fa fa-spinner fa-spin fa-4x"></span>
+                </div>
+            </div>
+        </div>
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" onclick="location.href='/'" style="background-color:white;">
+                <div class="sidebar-brand-icon">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 125px; min-width:100px;" src="/Content/img/bansi.png" alt="">
+                </div>
+            </a>
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <img style="width: 23px;" src="/Content/img/intranet-home-blanco.png">
+                    <span>Noticias Principales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Extensiones/IndexAccess" onclick="MostrarExtensiones();">
+                    <i class="fas fa-fw fa-phone"></i>
+                    <span>Extensiones Telefónicas</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/OtrasAplicaciones/IndexAccess" onclick="MostrarExtensiones();">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Otras Aplicaciones</span>
+                </a>
+            </li>
+            
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="ml-auto">
+                        <form class="form-inline" id="loginForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm mr-1" placeholder="Usuario" name="user" id="user">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-sm mr-1" placeholder="Contraseña" name="password" id="password">
+                            </div>
+                            <div class="form-group">
+                                <button onclick="ValidarLogin(); return false;" class="btn btn-primary btn-sm">Entrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+
+                
+
+<style type="text/css">
+    #global {
+        height: 440px;
+        overflow-y: scroll;
+    }
+
+    #mensajes {
+        height: auto;
+    }
+
+    .texto {
+        padding: 4px;
+        background: #fff;
+    }
+</style>
+<div class="container-fluid">
+    <!-- Sección de noticias principales -->
+    <div class="row">
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                </div>
+
+                <div class="card-body" style="text-align:center">
+                    <img class="img-fluid mb-5" alt="Imagen no encontrada" style="height:380px" src="/Access/ObtenerImagenDeParametro?nombreParametro=IMAGEN_ACCESSO_INTRANET">
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!-- Pie Chart -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Cumpleaños del Mes</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Seleccione un Mes:</div>
+                            <a id="1" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(1)">Enero</a>
+                            <a id="2" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(2)">Febrero</a>
+                            <a id="3" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(3)">Marzo</a>
+                            <a id="4" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(4)">Abril</a>
+                            <a id="5" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(5)">Mayo</a>
+                            <a id="6" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(6)">Junio</a>
+                            <a id="7" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(7)">Julio</a>
+                            <a id="8" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(8)">Agosto</a>
+                            <a id="9" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(9)">Septiembre</a>
+                            <a id="10" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(10)">Octubre</a>
+                            <a id="11" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(11)">Noviembre</a>
+                            <a id="12" class="dropdown-item" href="#" onclick="MostrarCumpleañosPorMes(12)">Diciembre</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Tabla para mostrar los cumpleaños del mes-->
+                <div class="card-body" id="global">
+
+                    <div id="dynamicContentContainer">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>CLAUDIA ANDREA GARANTON MORON</td>
+                <td>1/NOV.</td>
+            </tr>
+            <tr>
+                <td>AXEL MARTIN ALCARAZ </td>
+                <td>4/NOV.</td>
+            </tr>
+            <tr>
+                <td>JULIAN ENRIQUE PAZ LOPEZ</td>
+                <td>5/NOV.</td>
+            </tr>
+            <tr>
+                <td>JESUS  MANZANARES ARAMBULA</td>
+                <td>6/NOV.</td>
+            </tr>
+            <tr>
+                <td>JUAN CARLOS GARCIA HERNANDEZ</td>
+                <td>7/NOV.</td>
+            </tr>
+            <tr>
+                <td>RICARDO  ANTONIO HARO</td>
+                <td>7/NOV.</td>
+            </tr>
+            <tr>
+                <td>FRANCISCO JOSE ISUNZA VILLALVAZO</td>
+                <td>8/NOV.</td>
+            </tr>
+            <tr>
+                <td>ELIZABETH  GONZALEZ QUEZADA</td>
+                <td>8/NOV.</td>
+            </tr>
+            <tr>
+                <td>JULIO CESAR CLAVEL VACA</td>
+                <td>9/NOV.</td>
+            </tr>
+            <tr>
+                <td>ALEJANDRO  BERNAL VEGA</td>
+                <td>9/NOV.</td>
+            </tr>
+            <tr>
+                <td>SAMUEL ISAI FELIX ARCHULETA</td>
+                <td>9/NOV.</td>
+            </tr>
+            <tr>
+                <td>DANIEL  GUTIERREZ ARRIAGA</td>
+                <td>10/NOV.</td>
+            </tr>
+            <tr>
+                <td>ANGEL  CAMILO ESPINOSA</td>
+                <td>10/NOV.</td>
+            </tr>
+            <tr>
+                <td>MARCELA ALEJANDRA CASTRO FELIX</td>
+                <td>11/NOV.</td>
+            </tr>
+            <tr>
+                <td>LUIS ROBERTO ESTRADA ANDALON</td>
+                <td>12/NOV.</td>
+            </tr>
+            <tr>
+                <td>ATHZIRI YETZKANITZIN RODRIGUEZ VALDEZ</td>
+                <td>12/NOV.</td>
+            </tr>
+            <tr>
+                <td>CYNTHIA LILIANA NAVA HERNANDEZ</td>
+                <td>13/NOV.</td>
+            </tr>
+            <tr>
+                <td>ALEJANDRO ERNESTO GARCIA AVILA</td>
+                <td>13/NOV.</td>
+            </tr>
+            <tr>
+                <td>ALBERTO  HERRERA DUBLAN</td>
+                <td>14/NOV.</td>
+            </tr>
+            <tr>
+                <td>VALIA DE JESUS GUADALUPE ALVAREZ MARAVILLAS</td>
+                <td>14/NOV.</td>
+            </tr>
+            <tr>
+                <td>OMAR RODRIGO MATA ARCE</td>
+                <td>15/NOV.</td>
+            </tr>
+            <tr>
+                <td>JORGE HUMBERTO ULLOA MACIAS</td>
+                <td>15/NOV.</td>
+            </tr>
+            <tr>
+                <td>GIOVANA IVETH CORONA OJEDA</td>
+                <td>16/NOV.</td>
+            </tr>
+            <tr>
+                <td>NATHALIA JEANETTE BRETON FERNANDEZ</td>
+                <td>17/NOV.</td>
+            </tr>
+            <tr>
+                <td>LUIS FERNANDO ILLAN MARTINEZ</td>
+                <td>17/NOV.</td>
+            </tr>
+            <tr>
+                <td>DAVID  PERALTA RAMOS</td>
+                <td>17/NOV.</td>
+            </tr>
+            <tr>
+                <td>MICHELLE  RODRIGUEZ HERNANDEZ</td>
+                <td>18/NOV.</td>
+            </tr>
+            <tr>
+                <td>MARA LOURDES FLORES BERNAL</td>
+                <td>19/NOV.</td>
+            </tr>
+            <tr>
+                <td>DANIEL  RAMIREZ GAMIZ CASILLAS</td>
+                <td>20/NOV.</td>
+            </tr>
+            <tr>
+                <td>FLORA MARGARITA CARRILLO PALACIOS</td>
+                <td>24/NOV.</td>
+            </tr>
+            <tr>
+                <td>ERICK ALEJANDRO VELAZQUEZ ARRIAGA</td>
+                <td>24/NOV.</td>
+            </tr>
+            <tr>
+                <td>JENNIFER MONTSERRAT ALCALA RODRIGUEZ</td>
+                <td>24/NOV.</td>
+            </tr>
+            <tr>
+                <td>KARLA VIANEY DZIB OCH</td>
+                <td>25/NOV.</td>
+            </tr>
+            <tr>
+                <td>ARELY DAYANA SANCHEZ TRUJILLO</td>
+                <td>25/NOV.</td>
+            </tr>
+            <tr>
+                <td>RAUL ALBERTO CORRAL LARA</td>
+                <td>26/NOV.</td>
+            </tr>
+            <tr>
+                <td>JORGE LUIS LEAL ZENDEJAS</td>
+                <td>27/NOV.</td>
+            </tr>
+            <tr>
+                <td>BRENDA GUADALUPE RAMOS PEREZ</td>
+                <td>27/NOV.</td>
+            </tr>
+            <tr>
+                <td>ENRIQUE ALEJANDRO HERNANDEZ MORENO</td>
+                <td>27/NOV.</td>
+            </tr>
+            <tr>
+                <td>LUIS ALFONSO JIMENEZ LOPEZ</td>
+                <td>28/NOV.</td>
+            </tr>
+            <tr>
+                <td>ESTEFANIA  RUIZ GONZALEZ</td>
+                <td>29/NOV.</td>
+            </tr>
+            <tr>
+                <td>LARISA VICTORIA NIETO RUELAS</td>
+                <td>29/NOV.</td>
+            </tr>
+            <tr>
+                <td>BRENDA KARINA RAMIREZ GONZALEZ</td>
+                <td>29/NOV.</td>
+            </tr>
+    </tbody>
+</table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Votaciones Bansí </h6>
+                </div>
+                <div class="card-body">
+                    <form id="formVotacion">
+                        <div id="Pregunta1">
+                                    <br> <br>
+                                    <h3 class="m-0 font-weight-bold ">No se tienen encuestas activas por el momento.</h3>
+                                    <br> <br> <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script type="text/javascript">
+        var urlValidarLogin = "/Access/ValidarLogin";
+        var urlDarAcceso = "/Access/DarAcceso";
+        var urlRevisarAcceso = "/Access/RevisarAcceso";
+        var urlHome = "/";
+        var urlTiempoAcceso = "/Access/ObtenerTIempoExpiraSesion";
+        var urlLogOff = "/Access/LogOff";
+        var urlAccessIndex = "/Access";
+        var urlListaCumpleaños = "/Access/ListaCumpleanos";
+        var urlIndexOtrasApp = "/OtrasAplicaciones/IndexAccess";
+        var urlIndexExtensiones = "/Extensiones/IndexAccess";
+    </script>
+
+    <script src="/Content/vendor/jquery/jquery.min.js"></script>
+<script src="/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/Content/js/sb-admin-2.min.js"></script>
+<script src="/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/Content/scripts/LayoutAccess.js"></script>
+<script src="/Content/scripts/Layout.js"></script>
+<script src="/Content/scripts/Home.js"></script>
+<script src="/Content/scripts/Entradas.js"></script>
+<script src="/Content/scripts/ExtensionesTelefonicas.js"></script>
+<script src="/Content/scripts/Documentos.js"></script>
+
+</body>
+</html>

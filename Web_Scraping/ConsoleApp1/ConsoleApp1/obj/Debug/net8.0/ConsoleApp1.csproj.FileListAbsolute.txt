@@ -17,3 +17,7 @@ C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\HtmlAg
 C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.AssemblyReference.cache
 C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleA.CB28C8CC.Up2Date
 C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\CsvHelper.dll
+C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\WebDriver.dll
+C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\runtimes\linux\native\selenium-manager
+C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\runtimes\osx\native\selenium-manager
+C:\Learning_c-sharp\Web_Scraping\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\runtimes\win\native\selenium-manager.exe
