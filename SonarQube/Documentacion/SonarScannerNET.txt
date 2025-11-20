@@ -1,0 +1,46 @@
+Guia de los comandos para escanear ciertos proyectos, es necesario un primer escaneo y un token...
+
+BEGIN:
+SonarScanner.MSBuild.exe begin /k:"project-key" /d:sonar.token="<token>" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.cs.dotcover.reportsPaths=dotCover.Output.html
+
+BUILDS:
+
+MsBuild.exe "C:\" /t:Rebuild
+
+END:
+SonarScanner.MSBuild.exe end /d:sonar.token="<token>"
+
+
+
+EJEMPLOS:
+
+SonarScanner.MSBuild.exe begin /k:"CEPSPEISonarQube" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.token="sqp_936fdb03c94801fd7550be5387f4a61e3ca3fbe1"
+MsBuild.exe "C:\EDM\cepspei.Sonar\desarrollo-cep-spei\Fuentes\CEP2.sln" /t:Rebuild
+SonarScanner.MSBuild.exe end /d:sonar.token="sqp_936fdb03c94801fd7550be5387f4a61e3ca3fbe1"
+
+
+SonarScanner.MSBuild.exe begin /k:"CEPSPEISonarQube_Branch1284_15980_16685" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.token="sqp_6d7d4a69334db9070312833cd4f7bcd7356cbabc"
+MsBuild.exe "C:\EDM\cepspeibranch.Sonar\desarrollo-cep-spei\Fuentes\CEP2.sln" /t:Rebuild
+SonarScanner.MSBuild.exe end /d:sonar.token="sqp_6d7d4a69334db9070312833cd4f7bcd7356cbabc"
+
+
+SonarScanner.MSBuild.exe begin /k:"LavaDSonarQube" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.token="sqp_595813ba500271ec300e84ce132a8289caa07967"
+MsBuild.exe "C:\EDM\grpconstransferinter.Sonar\Bansi.LavaD.BDTT.Cliente_WCF.sln" /t:Rebuild 
+SonarScanner.MSBuild.exe end /d:sonar.token="sqp_595813ba500271ec300e84ce132a8289caa07967"
+
+
+SonarScanner.MSBuild.exe begin /k:"LavaDSonarQubeWeb" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.token="sqp_ea61b547a8dc4e6cbd673144d061fd38270a353c" /d:sonar.cs.dotcover.reportsPaths=dotCover.Output.html
+MsBuild.exe "C:\EDM\grpconstransferinterweb.Sonar\Bansi.LavaD.BDTT.Cliente_WCF.sln" /t:Rebuild
+SonarScanner.MSBuild.exe end /d:sonar.token="sqp_ea61b547a8dc4e6cbd673144d061fd38270a353c"
+
+
+SonarScanner.MSBuild.exe begin /k:"LavaDSonarQubeClient" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.token="sqp_a3f1fdeb88cfe8eb2716015b9749752ec8e0bd23"
+MsBuild.exe "C:\EDM\grpconstransferinterclient.Sonar\Bansi.LavaD.BDTT.Cliente_WCF.sln" /t:Rebuild
+SonarScanner.MSBuild.exe end /d:sonar.token="sqp_a3f1fdeb88cfe8eb2716015b9749752ec8e0bd23"
+
+SonarScanner.MSBuild.exe begin /k:"SPIDSonarQube" /d:sonar.host.url="http://bsisis01des:9000" /d:sonar.token="sqp_43ba920a04b7449b9e87f62e3961c8d83dfd5aef"
+MsBuild.exe "C:\EDM\spid.Sonar\desarrollo-spid\Fuentes\SPID - Todo.sln" /t:Rebuild
+SonarScanner.MSBuild.exe end /d:sonar.token="sqp_43ba920a04b7449b9e87f62e3961c8d83dfd5aef"
+
+
+

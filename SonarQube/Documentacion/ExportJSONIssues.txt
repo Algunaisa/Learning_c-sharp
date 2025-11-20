@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer squ_c83a965c2ffe8fa6800b30a471fe363bfa7a75ad" "http://bsisis01des:9000/api/issues/list?project=LavaDSonarQube&ps=500"
